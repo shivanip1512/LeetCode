@@ -23,5 +23,4 @@ public class SumOfArray {
 		
 		return arr[0]+sumArray(Arrays.copyOfRange(arr, 1, length), length-1);
 	}
-
 }
