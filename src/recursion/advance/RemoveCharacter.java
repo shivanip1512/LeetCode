@@ -1,7 +1,5 @@
 package recursion.advance;
 
-import java.util.Scanner;
-
 public class RemoveCharacter {
 	private static char toRemove = 'a';
 

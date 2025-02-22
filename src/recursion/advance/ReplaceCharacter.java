@@ -1,15 +1,11 @@
 package recursion.advance;
 
-import java.util.Scanner;
-
 public class ReplaceCharacter {
 	private static char toReplace = 'i';
 	private static char withReplace = 'y';
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("Enter a string: ");
-		String inputString = scanner.nextLine();
+		String inputString = UdemyUtil.getInputStr();
 
 		StringBuilder sb = new StringBuilder(inputString);
 		System.out.println("Replaced '" + toReplace + "' with '" + withReplace + "': " + replaceChar(sb, 0));
