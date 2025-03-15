@@ -9,6 +9,17 @@ public class UdemyUtil {
 		return scanner.nextLine();
 	}
 	
+	public static Integer getInputInt(String s) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print(s);
+		return scanner.nextInt();
+	}
+	
+	public static Integer getInputInt() {
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextInt();
+	}
+	
 	public static String swap(String s, int i, int j) {
 		StringBuilder sb = new StringBuilder(s);
 
@@ -18,5 +29,11 @@ public class UdemyUtil {
 		sb.setCharAt(j, temp);
 
 		return sb.toString();
+	}
+	
+	public static void swap(int[] arr, int i, Integer j) {
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
 	}
 }
