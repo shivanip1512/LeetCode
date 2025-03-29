@@ -36,4 +36,15 @@ public class UdemyUtil {
 		arr[i] = arr[j];
 		arr[j] = temp;
 	}
+	
+	public static int[] getIntArray() {
+		Integer arrayLength = UdemyUtil.getInputInt("Enter array length: ");
+		int[] arr = new int[arrayLength];
+
+		System.out.println("Enter elements in array: ");
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = UdemyUtil.getInputInt();
+		}
+		return arr;
+	}
 }
