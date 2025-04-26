@@ -15,22 +15,17 @@ public class Solution_184 {
 
 	public static List<Integer> findPerm(final String A, int B) {
 		List<Integer> list = new ArrayList<Integer>();
-		List<Integer> nums = new ArrayList<Integer>();
-		for (int i = 1; i <= B; i++) {
-			nums.add(i);
-		}
-		int s = 0, e = B - 1, i = 0;
-		while (s <= e && i < A.length()) {
+		int s = 1, e = B;
+		for (int i = 0; i < A.length(); i++) {
 			if (A.charAt(i) == 'D') {
-				list.add(nums.get(e));
+				list.add(e);
 				e--;
 			} else {
-				list.add(nums.get(s));
+				list.add(s);
 				s++;
 			}
-			i++;
 		}
-		list.add(nums.get(s));
+		list.add(s);
 		return list;
 	}
 }
