@@ -5,65 +5,30 @@ import util.UdemyUtil;
 public class Solution_74 {
 
 	public static void main(String[] args) {
-		int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-		setMatrixZeroes(matrix);
+		int[][] matrix = { { 1, 3, 5, 7 }, { 10, 11, 16, 20 }, { 23, 30, 34, 60 } };
+		int target = 13;
 		UdemyUtil.print2DArray(matrix);
+		boolean isPresent = searchMatrix(matrix, target);
+		System.out.println(isPresent);
 	}
 
-	private static void setMatrixZeroes(int[][] matrix) {
-		int rows = matrix.length;
-		int cols = matrix[0].length;
-		boolean hasZeroInFirstRow = false, hasZeroInFirstCol = false;
+	private static boolean searchMatrix(int[][] matrix, int target) {
+		int rows = matrix.length, row = 0, col = matrix[0].length - 1;
 
-		// Check first column for zeros
-		for (int i = 0; i < rows; i++) {
-		    if (matrix[i][0] == 0) {
-		        hasZeroInFirstCol = true;
-		        break;
-		    }
+		if (rows == 0 || (col + 1) == 0 || target < matrix[0][0] || target > matrix[rows - 1][col])
+			return false;
+
+		while (row < rows && col >= 0) {
+			if (matrix[row][col] == target)
+				return true;
+			else if (matrix[row][col] > target) {
+				col--;
+			} else {
+				row++;
+			}
 		}
 
-		// Check first row for zeros
-		for (int j = 0; j < cols; j++) {
-		    if (matrix[0][j] == 0) {
-		        hasZeroInFirstRow = true;
-		        break;
-		    }
-		}
-
-		// Use first row and column to mark zeros
-		for (int i = 1; i < rows; i++) {
-		    for (int j = 1; j < cols; j++) {
-		        if (matrix[i][j] == 0) {
-		            matrix[i][0] = 0;
-		            matrix[0][j] = 0;
-		        }
-		    }
-		}
-
-		// Zero out cells based on markers
-		for (int i = 1; i < rows; i++) {
-		    for (int j = 1; j < cols; j++) {
-		        if (matrix[i][0] == 0 || matrix[0][j] == 0) {
-		            matrix[i][j] = 0;
-		        }
-		    }
-		}
-
-		// Zero out first row if needed
-		if (hasZeroInFirstRow) {
-		    for (int j = 0; j < cols; j++) {
-		        matrix[0][j] = 0;
-		    }
-		}
-
-		// Zero out first column if needed
-		if (hasZeroInFirstCol) {
-		    for (int i = 0; i < rows; i++) {
-		        matrix[i][0] = 0;
-		    }
-		}
-
+		return false;
 	}
 
 }
