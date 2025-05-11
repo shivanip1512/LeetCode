@@ -22,6 +22,7 @@ public class Solution_142 {
 			return null;
 		}
 
+		/*
 		// size of loop
 		fast = fast.next;
 		int count = 1;
@@ -34,6 +35,8 @@ public class Solution_142 {
 		while (count-- > 0) {
 			fast = fast.next;
 		}
+*/
+		slow = head;
 
 		// move both pointer at same speed
 		while (slow != fast) {
