@@ -1,5 +1,8 @@
 package leetcode.trees;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution_105 {
 	public TreeNode buildTree(int[] preorder, int[] inorder) {
 		if (preorder == null || inorder == null || preorder.length != inorder.length)
@@ -38,4 +41,36 @@ public class Solution_105 {
 		}
 		return 0;
 	}
+	
+	
+	// Optimized code
+	private Map<Integer, Integer> inorderIndexMap;
+
+    public TreeNode buildTree1(int[] preorder, int[] inorder) {
+        if (preorder == null || inorder == null || preorder.length != inorder.length)
+            return null;
+
+        inorderIndexMap = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) {
+            inorderIndexMap.put(inorder[i], i);
+        }
+
+        return buildTreeHelper1(preorder, 0, preorder.length - 1, 0);
+    }
+
+    private TreeNode buildTreeHelper1(int[] preorder, int preStart, int preEnd, int inStart) {
+        if (preStart > preEnd)
+            return null;
+
+        int rootVal = preorder[preStart];
+        TreeNode root = new TreeNode(rootVal);
+
+        int rootIndexInInorder = inorderIndexMap.get(rootVal);
+        int leftSize = rootIndexInInorder - inStart;
+
+        root.left = buildTreeHelper1(preorder, preStart + 1, preStart + leftSize, inStart);
+        root.right = buildTreeHelper1(preorder, preStart + leftSize + 1, preEnd, rootIndexInInorder + 1);
+
+        return root;
+    }
 }
